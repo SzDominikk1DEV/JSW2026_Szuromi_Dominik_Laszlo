@@ -1,0 +1,326 @@
+:root {
+    --kek: rgb(3 114 197);
+    --sotetKek: rgb(0 61 138);
+    --barna: rgb(94 60 38);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--kek);
+    color: var(--sotetKek);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Rubik Distressed', cursive;
+    font-weight: 400;
+}
+
+h2 {
+    font-variant: small-caps;
+}
+
+header {
+    height: 400px;
+    background-image:
+        linear-gradient(
+            to bottom,
+            rgb(from var(--barna) r g b / 0.8),
+            rgb(from black r g b / 0.6)
+        ),
+        url('../images/banner.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header h1 {
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    border-top: 3px solid white;
+    border-bottom: 3px solid white;
+    padding: 0.5rem 1.5rem;
+}
+
+main {
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 4px 24px 0 var(--sotetKek);
+}
+
+.bevezeto,
+.katblokk,
+.szamolo {
+    padding: 1.5rem;
+}
+
+.bevezeto p {
+    margin-bottom: 1rem;
+}
+
+.kategoriak {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.kategoria {
+    display: inline-block;
+    background-color: rgb(from var(--sotetKek) r g b / 0.1);
+    color: var(--sotetKek);
+    font-weight: bold;
+    border-radius: 9999px;
+    padding: 0.5rem 1.2rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+.kategoria:hover {
+    cursor: pointer;
+}
+
+.kategoria.aktiv {
+    background-color: var(--sotetKek);
+    color: white;
+}
+
+.katblokk {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.katblokk h2 {
+    margin-bottom: 0.75rem;
+}
+
+.katblokk > p {
+    margin-bottom: 1rem;
+}
+
+main {
+    counter-reset: alcim;
+}
+
+.bevezeto h2::before {
+    content: none;
+}
+
+.katblokk h2 {
+    counter-increment: alcim;
+}
+
+.katblokk h2::before {
+    content: counter(alcim) ". ";
+}
+
+.szamolo h2::before {
+    content: none;
+}
+
+.kartya-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.kartya {
+    border: 1px solid var(--sotetKek);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 5s ease, box-shadow 5s ease;
+}
+
+.kartya img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+}
+
+.kartya h3 {
+    color: var(--sotetKek);
+    padding: 0.75rem 0.75rem 0.25rem;
+    font-size: 1rem;
+}
+
+.kartya p {
+    padding: 0 0.75rem 0.75rem;
+    flex: 1;
+    font-size: 0.9rem;
+}
+
+.kartya:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px 0 rgb(from var(--sotetKek) r g b / 0.4);
+}
+
+.szamolo h2 {
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.75rem;
+}
+
+.form-group label {
+    color: var(--sotetKek);
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+}
+
+.form-group input {
+    border: 2px solid var(--sotetKek);
+    border-radius: 9999px;
+    padding: 0.5rem 1rem;
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    color: var(--sotetKek);
+    outline: none;
+    width: 100%;
+}
+
+.form-group input:focus {
+    border-color: var(--kek);
+}
+
+.form-group input:invalid {
+    border-color: red;
+}
+
+.szamolas-gomb {
+    background-color: var(--sotetKek);
+    color: white;
+    border: none;
+    border-radius: 9999px;
+    padding: 0.6rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 0.5rem;
+    font-family: Arial, sans-serif;
+}
+
+.szamolas-gomb:hover {
+    background-color: rgb(from var(--sotetKek) r g b / 0.9);
+}
+
+footer {
+    background-color: var(--sotetKek);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    font-family: Arial, sans-serif;
+}
+
+.dialog-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgb(0 0 0 / 0.4);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.dialog-overlay.aktiv {
+    display: flex;
+}
+
+dialog {
+    position: relative;
+    border: 2px solid var(--sotetKek);
+    border-radius: 0.5rem;
+    padding: 2rem 2rem 1.5rem;
+    color: var(--sotetKek);
+    font-family: Arial, sans-serif;
+    max-width: 400px;
+    width: 90%;
+    background: white;
+}
+
+dialog::backdrop {
+    display: none;
+}
+
+dialog h2 {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+dialog p {
+    font-size: 1rem;
+}
+
+.bezaras-gomb {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background-color: var(--sotetKek);
+    color: white;
+    border: none;
+    border-radius: 9999px;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bezaras-gomb:hover {
+    background-color: rgb(from var(--sotetKek) r g b / 0.9);
+}
+
+@media (min-width: 750px) {
+    header h1 {
+        font-size: 3rem;
+    }
+
+    main {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .kategoriak {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    .kartya-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form-group {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .form-group label {
+        min-width: 160px;
+        margin-bottom: 0;
+        margin-right: 0.5rem;
+    }
+}
+
+@media (min-width: 1201px) {
+    .kartya-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
